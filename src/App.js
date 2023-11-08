@@ -12,7 +12,14 @@ import BlueButton from "./components/BlueButton";
 function App() {
   return (
     <div>
-      <BlueButton/>
+      <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/path" element={<Path />} />
+        <Route path="/map" element={<Map />} />
+      </Routes>
+    </BrowserRouter>
+      
     </div>
   );
 }

@@ -1,11 +1,14 @@
-import React from 'react';
-
+import React from "react";
+import BlueButton from "../components/BlueButton";
 
 function Login() {
   return (
-    <div className="bg-[#ff0000]">
-      <h1>This is login</h1>
-      <h1>tet test</h1>
+    <div class="container mx-auto my-auto">
+      <div class="bg-auto bg-slate-200">
+        <h1>ยินดีต้อนรับ</h1>
+        <h1>เข้าสู่ระบบ</h1>
+        <BlueButton />
+      </div>
     </div>
   );
 }
