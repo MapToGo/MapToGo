@@ -19,7 +19,8 @@ import {
   Autocomplete,
   DirectionsRenderer,
 } from '@react-google-maps/api'
-import { useRef, useState } from 'react'
+import { React, useRef, useState } from 'react'
+import { BottomNavigation } from  "reactjs-bottom-navigation";
 
 const center = { lat: 48.8584, lng: 2.2945 }
 
@@ -100,9 +101,9 @@ function Map() {
       </Box>
       <Box
         p={4}
-        borderRadius='lg'
-        m={4}
-        bgColor='white'
+        //borderRadius='lg'
+        m={0}
+        bgColor='#FFF1A9'
         shadow='base'
         //minW='container.md'
         zIndex='1'
@@ -110,39 +111,74 @@ function Map() {
         height = 'auto'
       >
         <HStack spacing={2} justifyContent='space-between'>
-          <Box flexGrow={1}>
+          <Box flexGrow={1} >
             <Autocomplete>
-              <Input type='text' placeholder='Origin' ref={originRef} />
+              <Input 
+              type='text' 
+              placeholder='Origin'
+              bgColor={'white'}  
+              ref={originRef} 
+              
+              />
             </Autocomplete>
           </Box>
-          <Box flexGrow={1}>
+          
+        </HStack>
+        <HStack spacing={2} mt={4} justifyContent='space-between'>
+        <Box flexGrow={1}>
             <Autocomplete>
               <Input
                 type='text'
                 placeholder='Destination'
+                bgColor={'white'}
                 ref={destiantionRef}
               />
             </Autocomplete>
           </Box>
-
-          <ButtonGroup>
+        </HStack>
+        <HStack spacing={2} mt={4} justifyContent='space-between'>
+        <ButtonGroup>
             <Button colorScheme='green' type='submit' onClick={calculateRoute}>
               GO
             </Button>
-            <Button colorScheme='pink' type='submit' onClick={()=>navigate('/path')}>
-              Favourite
-            </Button>
            
           </ButtonGroup>
+
         </HStack>
-        <HStack></HStack>
         <HStack spacing={4} mt={4} justifyContent='space-between'>
           <Text>Distance: {distance} </Text>
           <Text>Duration: {duration} </Text>
           
         </HStack>
       </Box>
+      <Box
+        p={4}
+        //borderRadius='lg'
+        m={540}
+        bgColor='#FFECD6'
+        shadow='base'
+        //minW='container.md'
+        zIndex='1'
+        width = '100%'
+        height = 'auto'
+      >
+        <HStack spacing={4} mt={4} justifyContent='flex-end'>
+        <ButtonGroup >
+            <Button colorScheme='#FFF1A9' textColor={'grey'} type='submit' style={{float: 'right'}} className="float-right"  onClick={()=>navigate('/path')}>
+              Favourite
+            </Button>
+           
+          </ButtonGroup>
+
+        </HStack>
+        
+      </Box>
+      
+      
+      
     </Flex>
+    
+    
   )
 }
 

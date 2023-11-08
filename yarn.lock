@@ -2672,7 +2672,7 @@
     "lz-string" "^1.5.0"
     "pretty-format" "^27.0.2"
 
-"@testing-library/jest-dom@^5.17.0":
+"@testing-library/jest-dom@^5.16.5", "@testing-library/jest-dom@^5.17.0":
   "integrity" "sha512-ynmNeT7asXyH3aSVv4vvX4Rb+0qjOhdNHnO/3vuZNqPmhDpV/+rCSGwQ7bLcmU2cJ4dvoheIO85LQj0IbJHEtg=="
   "resolved" "https://registry.npmjs.org/@testing-library/jest-dom/-/jest-dom-5.17.0.tgz"
   "version" "5.17.0"
@@ -2883,6 +2883,14 @@
     "expect" "^29.0.0"
     "pretty-format" "^29.0.0"
 
+"@types/jest@^27.5.2":
+  "integrity" "sha512-mpT8LJJ4CMeeahobofYWIjFo0xonRS/HfxnVEPMPFSQdGUt1uHCnoPT7Zhb+sjDU2wz0oKV0OLUR0WzrHNgfeA=="
+  "resolved" "https://registry.npmjs.org/@types/jest/-/jest-27.5.2.tgz"
+  "version" "27.5.2"
+  dependencies:
+    "jest-matcher-utils" "^27.0.0"
+    "pretty-format" "^27.0.0"
+
 "@types/json-schema@*", "@types/json-schema@^7.0.4", "@types/json-schema@^7.0.5", "@types/json-schema@^7.0.8", "@types/json-schema@^7.0.9":
   "integrity" "sha512-U3PUjAudAdJBeC2pgN8uTIKgxrb4nlDF3SF0++EldXQvQBGkpFZMSnwQiIoDU77tv45VgNkl/L4ouD+rEomujw=="
   "resolved" "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.14.tgz"
@@ -2924,6 +2932,11 @@
   dependencies:
     "undici-types" "~5.26.4"
 
+"@types/node@^16.18.26":
+  "integrity" "sha512-k0N7BqGhJoJzdh6MuQg1V1ragJiXTh8VUBAZTWjJ9cUq23SG0F0xavOwZbhiP4J3y20xd6jxKx+xNUhkMAi76Q=="
+  "resolved" "https://registry.npmjs.org/@types/node/-/node-16.18.61.tgz"
+  "version" "16.18.61"
+
 "@types/parse-json@^4.0.0":
   "integrity" "sha512-3YmXzzPAdOTVljVMkTMBdBEvlOLg2cDQaDhnnhT3nT9uDbnJzjWhKlzb+desT12Y7tGqaN6d+AbozcKzyL36Ng=="
   "resolved" "https://registry.npmjs.org/@types/parse-json/-/parse-json-4.0.1.tgz"
@@ -2954,7 +2967,7 @@
   "resolved" "https://registry.npmjs.org/@types/range-parser/-/range-parser-1.2.6.tgz"
   "version" "1.2.6"
 
-"@types/react-dom@^18.0.0":
+"@types/react-dom@^18.0.0", "@types/react-dom@^18.2.4":
   "integrity" "sha512-V835xgdSVmyQmI1KLV2BEIUgqEuinxp9O4G6g3FqO/SqLac049E53aysv0oEFD2kHfejeKU+ZqL2bcFWj9gLAQ=="
   "resolved" "https://registry.npmjs.org/@types/react-dom/-/react-dom-18.2.14.tgz"
   "version" "18.2.14"
@@ -2965,6 +2978,15 @@
   "integrity" "sha512-klEeru//GhiQvXUBayz0Q4l3rKHWsBR/EUOhOeow6hK2jV7MlO44+8yEk6+OtPeOlRfnpUnrLXzGK+iGph5aeg=="
   "resolved" "https://registry.npmjs.org/@types/react/-/react-17.0.69.tgz"
   "version" "17.0.69"
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/scheduler" "*"
+    "csstype" "^3.0.2"
+
+"@types/react@^18.2.6":
+  "integrity" "sha512-RGAYMi2bhRgEXT3f4B92WTohopH6bIXw05FuGlmJEnv/omEn190+QYEIYxIAuIBdKgboYYdVved2p1AxZVQnaw=="
+  "resolved" "https://registry.npmjs.org/@types/react/-/react-18.2.37.tgz"
+  "version" "18.2.37"
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -6827,6 +6849,16 @@
     "jest-get-type" "^27.5.1"
     "pretty-format" "^27.5.1"
 
+"jest-matcher-utils@^27.0.0":
+  "integrity" "sha512-z2uTx/T6LBaCoNWNFWwChLBKYxTMcGBRjAt+2SbP929/Fflb9aa5LGma654Rz8z9HLxsrUaYzxE9T/EFIL/PAw=="
+  "resolved" "https://registry.npmjs.org/jest-matcher-utils/-/jest-matcher-utils-27.5.1.tgz"
+  "version" "27.5.1"
+  dependencies:
+    "chalk" "^4.0.0"
+    "jest-diff" "^27.5.1"
+    "jest-get-type" "^27.5.1"
+    "pretty-format" "^27.5.1"
+
 "jest-matcher-utils@^27.5.1":
   "integrity" "sha512-z2uTx/T6LBaCoNWNFWwChLBKYxTMcGBRjAt+2SbP929/Fflb9aa5LGma654Rz8z9HLxsrUaYzxE9T/EFIL/PAw=="
   "resolved" "https://registry.npmjs.org/jest-matcher-utils/-/jest-matcher-utils-27.5.1.tgz"
@@ -8669,7 +8701,7 @@
     "lodash" "^4.17.20"
     "renderkid" "^3.0.0"
 
-"pretty-format@^27.0.2", "pretty-format@^27.5.1":
+"pretty-format@^27.0.0", "pretty-format@^27.0.2", "pretty-format@^27.5.1":
   "integrity" "sha512-Qb1gy5OrP5+zDf2Bvnzdl3jsTf1qXVMazbvCoKhtKqVs4/YK4ozX4gKQJJVyNe+cajNPn0KoC0MC3FUmaHWEmQ=="
   "resolved" "https://registry.npmjs.org/pretty-format/-/pretty-format-27.5.1.tgz"
   "version" "27.5.1"
@@ -9012,6 +9044,25 @@
   "version" "18.2.0"
   dependencies:
     "loose-envify" "^1.1.0"
+
+"reactjs-bottom-navigation@^2.0.3", "reactjs-bottom-navigation@^2.0.5":
+  "integrity" "sha512-Vs/5p/yPO5OWx8Eco0HuYz5aeeInLDxkwiHuuPk31WTct8B8Q8+YelLo/D93tk0y6isF2RMVtXU0iQhKCh76iw=="
+  "resolved" "https://registry.npmjs.org/reactjs-bottom-navigation/-/reactjs-bottom-navigation-2.0.5.tgz"
+  "version" "2.0.5"
+  dependencies:
+    "@testing-library/jest-dom" "^5.16.5"
+    "@testing-library/react" "^13.4.0"
+    "@testing-library/user-event" "^13.5.0"
+    "@types/jest" "^27.5.2"
+    "@types/node" "^16.18.26"
+    "@types/react" "^18.2.6"
+    "@types/react-dom" "^18.2.4"
+    "react" "^18.2.0"
+    "react-dom" "^18.2.0"
+    "react-scripts" "5.0.1"
+    "reactjs-bottom-navigation" "^2.0.3"
+    "typescript" "^4.9.5"
+    "web-vitals" "^2.1.4"
 
 "read-cache@^1.0.0":
   "integrity" "sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA=="
@@ -10276,7 +10327,7 @@
   dependencies:
     "is-typedarray" "^1.0.0"
 
-"typescript@^3.2.1 || ^4", "typescript@>= 2.7", "typescript@>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta":
+"typescript@^3.2.1 || ^4", "typescript@^4.9.5", "typescript@>= 2.7", "typescript@>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta":
   "integrity" "sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g=="
   "resolved" "https://registry.npmjs.org/typescript/-/typescript-4.9.5.tgz"
   "version" "4.9.5"
