@@ -1,6 +1,7 @@
 import React from "react";
 import Travelpath from "../components/TravelPath"
 
+
 function FavPath() {
   return (
     <div className="h-screen flex justify-center items-center">
