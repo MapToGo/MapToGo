@@ -1,17 +1,30 @@
-
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from "./page/Login";
+import Login from "./page/Welcome";
 import Path from "./page/Path";
 import Map from "./page/Map";
+import Welcome from "./page/Welcome";
+
+
 import Register from "./page/Register";
 import Background from "./components/Background";
+import FavPath from "./page/FavPath";
+
 
 function App() {
   return (
-    <BrowserRouter>
+    <div>
+      <BrowserRouter>
       <Routes>
-        <Route
+      <Route
           path="/"
+          element={
+            <Background>
+              <Welcome />
+            </Background>
+          }
+        />
+        <Route
+          path="/login"
           element={
             <Background>
               <Login />
@@ -42,8 +55,18 @@ function App() {
             </Background>
           }
         />
+        <Route
+          path="/favpath"
+          element={
+            <Background>
+              <FavPath />
+            </Background>
+          }
+        />
       </Routes>
     </BrowserRouter>
+      
+    </div>
   );
 }
 
