@@ -8,9 +8,17 @@ import {
   Input,
   SkeletonText,
   Text,
+  Image
 } from '@chakra-ui/react'
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import PublicIcon from "@mui/icons-material/Public";
+import FmdGoodIcon from "@mui/icons-material/FmdGood";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { FaLocationArrow, FaTimes } from 'react-icons/fa'
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import worldIcon from "../image/world.svg";
+import locationIcon from "../image/location.svg";
+import tripleDot from "../image/tripleDot.svg";
 
 import {
   useJsApiLoader,
@@ -99,80 +107,80 @@ function Map() {
           )}
         </GoogleMap>
       </Box>
+      
       <Box
         p={4}
-        //borderRadius='lg'
         m={0}
-        bgColor='#FFF1A9'
-        shadow='base'
-        //minW='container.md'
-        zIndex='1'
-        width = '100%'
-        height = 'auto'
+        bgColor="#FFF1A9"
+        shadow="base"
+        zIndex="1"
+        width="100%"
+        height="auto"
       >
-        <HStack spacing={2} justifyContent='space-between'>
-          <Box flexGrow={1} >
+        <HStack spacing={2} justifyContent="space-between">
+          <Box flexGrow={1}>
             <Autocomplete>
-              <Input 
-              type='text' 
-              placeholder='Origin'
-              bgColor={'white'}  
-              ref={originRef} 
-              
-              />
-            </Autocomplete>
-          </Box>
-          
-        </HStack>
-        <HStack spacing={2} mt={4} justifyContent='space-between'>
-        <Box flexGrow={1}>
-            <Autocomplete>
-              <Input
-                type='text'
-                placeholder='Destination'
-                bgColor={'white'}
-                ref={destiantionRef}
-              />
+              <HStack>
+                <PublicIcon />
+                <Input
+                  type="text"
+                  placeholder="ต้นทาง"
+                  bgColor={"white"}
+                  ref={originRef}
+                />
+              </HStack>
             </Autocomplete>
           </Box>
         </HStack>
-        <HStack spacing={2} mt={4} justifyContent='space-between'>
-        <ButtonGroup>
-            <Button colorScheme='green' type='submit' onClick={calculateRoute}>
-              GO
+        <Box>
+          <MoreVertIcon />
+        </Box>
+        <HStack spacing={2} justifyContent="space-between">
+          <Box flexGrow={1}>
+            <Autocomplete>
+              <HStack>
+                <FmdGoodIcon />
+                <Input
+                  type="text"
+                  placeholder="ปลายทาง"
+                  bgColor={"white"}
+                  ref={destiantionRef}
+                />
+              </HStack>
+            </Autocomplete>
+          </Box>
+        </HStack>
+        <HStack spacing={2} mt={4} justifyContent="space-between">
+          <ButtonGroup width="full">
+            <Button
+              type="submit"
+              onClick={calculateRoute}
+              bgColor="#489ECF"
+              textColor={"white"}
+              width="full"
+            >
+              ค้นหาเส้นทาง
             </Button>
-           
           </ButtonGroup>
-
         </HStack>
-        <HStack spacing={4} mt={4} justifyContent='space-between'>
-          <Text>Distance: {distance} </Text>
-          <Text>Duration: {duration} </Text>
-          
+        <HStack spacing={4} mt={4} justifyContent="space-between">
+          <Text>ระยะทาง: {distance} </Text>
+          <Text>เวลาที่ใช้: {duration} </Text>
         </HStack>
       </Box>
-      <Box
-        p={4}
-        //borderRadius='lg'
-        m={540}
-        bgColor='#FFECD6'
-        shadow='base'
-        //minW='container.md'
-        zIndex='1'
-        width = '100%'
-        height = 'auto'
+      <Button
+        position='fixed'
+        type='submit'
+        bottom='4'
+        right='4'
+        backgroundColor={'#489ECF'}
+        color={'white'}
+        size='lg'
+        onClick={()=>navigate('/path')}
       >
-        <HStack spacing={4} mt={4} justifyContent='flex-end'>
-        <ButtonGroup >
-            <Button colorScheme='#FFF1A9' textColor={'grey'} type='submit' style={{float: 'right'}} className="float-right"  onClick={()=>navigate('/path')}>
-              Favourite
-            </Button>
-           
-          </ButtonGroup>
-
-        </HStack>
         
-      </Box>
+        เส้นทางที่บันทึกไว้
+      </Button>
       
       
       
