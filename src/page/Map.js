@@ -8,12 +8,10 @@ import {
   Input,
   SkeletonText,
   Text,
-} from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import PublicIcon from "@mui/icons-material/Public";
-import FmdGoodIcon from "@mui/icons-material/FmdGood";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+} from '@chakra-ui/react'
+import { FaLocationArrow, FaTimes } from 'react-icons/fa'
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+
 import {
   useJsApiLoader,
   GoogleMap,
@@ -100,6 +98,7 @@ function Map() {
           )}
         </GoogleMap>
       </Box>
+      
       <Box
         p={4}
         m={0}
@@ -112,15 +111,13 @@ function Map() {
         <HStack spacing={2} justifyContent="space-between">
           <Box flexGrow={1}>
             <Autocomplete>
-              <HStack>
-                <PublicIcon />
-                <Input
-                  type="text"
-                  placeholder="Origin"
-                  bgColor={"white"}
-                  ref={originRef}
-                />
-              </HStack>
+              <Input 
+              type='text' 
+              placeholder='Origin'
+              bgColor={'white'}  
+              ref={originRef} 
+              
+              />
             </Autocomplete>
           </Box>
         </HStack>
@@ -130,39 +127,53 @@ function Map() {
         <HStack spacing={2} justifyContent="space-between">
           <Box flexGrow={1}>
             <Autocomplete>
-              <HStack>
-                <FmdGoodIcon />
-                <Input
-                  type="text"
-                  placeholder="Destination"
-                  bgColor={"white"}
-                  ref={destiantionRef}
-                />
-              </HStack>
+              <Input
+                type='text'
+                placeholder='Destination'
+                bgColor={'white'}
+                ref={destiantionRef}
+              />
             </Autocomplete>
           </Box>
         </HStack>
-        <HStack spacing={2} mt={4} justifyContent="space-between">
-          <ButtonGroup width="full">
-            <Button>
-              <FavoriteBorderIcon className="color-[#489ECF]" />
-            </Button>
-            <Button
-              type="submit"
-              onClick={calculateRoute}
-              bgColor="#489ECF"
-              textColor={"white"}
-              width="full"
-            >
-              ค้นหาเส้นทาง
+        <HStack spacing={2} mt={4} justifyContent='space-between'>
+        <ButtonGroup>
+            <Button colorScheme='green' type='submit' onClick={calculateRoute}>
+              GO
             </Button>
           </ButtonGroup>
         </HStack>
-        <HStack spacing={4} mt={4} justifyContent="space-between">
+        <HStack spacing={4} mt={4} justifyContent='space-between'>
           <Text>Distance: {distance} </Text>
           <Text>Duration: {duration} </Text>
+          
         </HStack>
       </Box>
+      <Box
+        p={4}
+        //borderRadius='lg'
+        m={540}
+        bgColor='#FFECD6'
+        shadow='base'
+        //minW='container.md'
+        zIndex='1'
+        width = '100%'
+        height = 'auto'
+      >
+        <HStack spacing={4} mt={4} justifyContent='flex-end'>
+        <ButtonGroup >
+            <Button colorScheme='#FFF1A9' textColor={'grey'} type='submit' style={{float: 'right'}} className="float-right"  onClick={()=>navigate('/path')}>
+              Favourite
+            </Button>
+           
+          </ButtonGroup>
+
+        </HStack>
+        
+      </Box>
+      
+      
+      
     </Flex>
   );
 }

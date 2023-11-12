@@ -2,12 +2,8 @@
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
-    extend: {
-      fontFamily: {
-        sarabun: ["Sarabun", "sans"],
-      },
-    },
+    extend: {},
   },
-  variants: {},
   plugins: [],
-};
+}
+
