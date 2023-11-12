@@ -7,6 +7,7 @@ import Welcome from "./page/Welcome";
 
 import Register from "./page/Register";
 import Background from "./components/Background";
+import FavPath from "./page/FavPath";
 
 
 function App() {
@@ -51,6 +52,14 @@ function App() {
           element={
             <Background>
               <Register />
+            </Background>
+          }
+        />
+        <Route
+          path="/favpath"
+          element={
+            <Background>
+              <FavPath />
             </Background>
           }
         />
