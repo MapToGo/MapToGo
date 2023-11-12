@@ -7,42 +7,44 @@ import Background from "./components/Background";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Background>
-              <Login />
-            </Background>
-          }
-        />
-        <Route
-          path="/path"
-          element={
-            <Background>
-              <Path />
-            </Background>
-          }
-        />
-        <Route
-          path="/map"
-          element={
-            <Background>
-              <Map />
-            </Background>
-          }
-        />
-        <Route
-          path="/regist"
-          element={
-            <Background>
-              <Register />
-            </Background>
-          }
-        />
-      </Routes>
-    </BrowserRouter>
+    <div className="font-sarabun">
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Background>
+                <Login />
+              </Background>
+            }
+          />
+          <Route
+            path="/path"
+            element={
+              <Background>
+                <Path />
+              </Background>
+            }
+          />
+          <Route
+            path="/map"
+            element={
+              <Background>
+                <Map />
+              </Background>
+            }
+          />
+          <Route
+            path="/regist"
+            element={
+              <Background>
+                <Register />
+              </Background>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 
