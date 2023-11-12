@@ -4,6 +4,7 @@ import Path from "./page/Path";
 import Map from "./page/Map";
 import Register from "./page/Register";
 import Background from "./components/Background";
+import "./App.css"
 
 function App() {
   return (
