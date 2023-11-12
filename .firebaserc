@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "maptogo-se"
-  }
+    "default": "maptogo-sw",
+    "maptogo": "maptogo-sw"
+  },
+  "targets": {},
+  "etags": {}
 }

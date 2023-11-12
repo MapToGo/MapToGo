@@ -3,7 +3,7 @@ import Login from "./page/Welcome";
 import Path from "./page/Path";
 import Map from "./page/Map";
 import Welcome from "./page/Welcome";
-
+import FormInputData from "./components/FormInputData";
 
 import Register from "./page/Register";
 import Background from "./components/Background";
