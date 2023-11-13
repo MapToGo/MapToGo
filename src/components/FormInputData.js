@@ -1,25 +1,40 @@
 import React, { useState, useEffect } from "react"
 import { db } from "../firebase";
 import { collection,addDoc,getDoc } from "firebase/firestore";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const FormInputData = () =>{
 const [form, setForm]= useState({})
 
 
 const handleChange =(e)=>{
-    console.log(e.target.name,e.target.value)
+    console.log("handle change",e.target.name,e.target.value)
     setForm({
         ...form,
         [e.target.name]: e.target.value
          })
+    console.log("form", form)
+    console.log("form2", form)
+
 }
 
-const handleAddData = async()=>{
-    await addDoc(collection(db,"Users"),form)
-    .then((res)=>{
-       console.log(res);
-    })
-    .catch((err)=>console.log(err));
+const handleAddData = async (e) => {
+  e.preventDefault()
+  try {
+    
+      console.log("Pass")
+      console.log(form)
+      const auth = getAuth();
+      const { email, password } = form;
+      const res =  createUserWithEmailAndPassword(auth, email, password);
+      await addDoc(collection(db,"Users"),form)
+      .then((res)=>{
+         console.log(res);
+      })
+      
+  } catch (err) {
+      console.error(err);
+  }
 };
 
 
@@ -31,10 +46,10 @@ return (
       <div className="mb-4">
         <label
           className="block text-gray-700 text-sm font-regular mb-2"
-          for="name">ชื่อ
+          form="name">ชื่อ
         </label>
         <input
-          onChange={(e)=>handleChange(e)}
+          onChange={handleChange}
           type="text"
           name="name"
           className="w-full p-2  border bg-white/50 rounded-lg focus:outline-none focus:ring focus:border-blue-300"
@@ -46,11 +61,11 @@ return (
         <label
           
           className="block text-gray-700 text-sm font-regular mb-2"
-          For="surname">นามสกุล
+          form="surname">นามสกุล
           
         </label>
         <input
-          onChange={(e)=>handleChange(e)}
+          onChange={handleChange}
           type="text"
           name="surname"
           
@@ -61,13 +76,13 @@ return (
       </div>
       <div className="mb-4">
         <label
-          For="phoneNumber"
+          form="phoneNumber"
           className="block text-gray-700 text-sm font-regular mb-2"
         >
           เบอร์โทรศัพท์
         </label>
         <input
-          onChange={(e)=>handleChange(e)}
+          onChange={handleChange}
           type="tel"
           name="phoneNumber"
          
@@ -78,13 +93,13 @@ return (
       </div>
       <div className="mb-4">
         <label
-          For="email"
+          form="email"
           className="block text-gray-700 text-sm font-regular mb-2"
         >
           อีเมล์
         </label>
         <input
-          onChange={(e)=>handleChange(e)}
+          onChange={handleChange}
           type="email"
           name="email"
           
@@ -96,13 +111,13 @@ return (
 
       <div className="mb-4">
         <label
-          For="password"
+          form="password"
           className="block text-gray-700 text-sm font-regular mb-2"
         >
           รหัสผ่าน
         </label>
         <input
-          onChange={(e)=>handleChange(e)}
+          onChange={handleChange}
           type="password"
           name="password"
           
@@ -139,7 +154,6 @@ return (
       <div className="text-center">
         <button
           onClick={handleAddData}
-          type="submit"
           className="bg-[#489ECF] w-full text-white px-4 py-2 rounded-lg shadow-lg"
         >
           สมัครสมาชิก
