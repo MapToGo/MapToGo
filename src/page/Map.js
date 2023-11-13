@@ -152,7 +152,7 @@ function Map() {
         </HStack>
         <HStack spacing={2} mt={4} justifyContent="space-between">
           <ButtonGroup width="full">
-            <Button>
+            <Button>           
               <BookmarkBorderIcon />
             </Button>
             <Button
