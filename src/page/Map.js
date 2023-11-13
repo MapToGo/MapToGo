@@ -20,6 +20,9 @@ import {
   Autocomplete,
   DirectionsRenderer,
   LoadScript,
+  TravelMode,
+  maps,
+  map, 
 } from '@react-google-maps/api'
 
 import { useRef, useState } from 'react'
@@ -49,11 +52,11 @@ function Map() {
     
 function calculateAndDisplayRoute(directionsService, directionsRenderer){
   const SelectMode = document.getElementById("mode").value
+  const google = window.google
 
   directionsService.routes({
     origin: document.getElementById("from").value,
     destination: document.getElementById("to").value,
-
     travelMode: google.maps.TravelMode[SelectMode]
   })
   .then((Response) => {
@@ -66,6 +69,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer){
       return
     }
     // eslint-disable-next-line no-undef
+    const google = window.google
     const directionsRenderer = new google.maps.DirectionsRenderer()
     const directionsService = new google.maps.DirectionsService()
     const map = new google.maps.map(document.getElementById("map"),{
