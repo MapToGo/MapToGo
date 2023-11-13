@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { db } from "../firebase";
-import { collection,addDoc } from "firebase/firestore";
+import { collection,addDoc,getDoc } from "firebase/firestore";
 
 const FormInputData = () =>{
 const [form, setForm]= useState({})
@@ -10,17 +10,17 @@ const handleChange =(e)=>{
     console.log(e.target.name,e.target.value)
     setForm({
         ...form,
-        [e.target.name]: e.target.value,
+        [e.target.name]: e.target.value
          })
 }
 
 const handleAddData = async()=>{
-    await addDoc(collection(db,'Users'),form)
+    await addDoc(collection(db,"Users"),form)
     .then((res)=>{
        console.log(res);
     })
-    .catch(err=>console.log(err))
-}
+    .catch((err)=>console.log(err));
+};
 
 
 return (
