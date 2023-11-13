@@ -179,7 +179,7 @@ function Map() {
         backgroundColor={"#489ECF"}
         color={"white"}
         size="lg"
-        onClick={() => navigate("/path")}
+        onClick={() => navigate("/Favpath")}
       >
         เส้นทางที่บันทึกไว้
       </Button>
