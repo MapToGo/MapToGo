@@ -1,7 +1,9 @@
 import React from "react";
 import Logo from "../image/Logo.svg"
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 
 function Welcome() {
+  let navigate = useNavigate();
   return (
     <div className="h-screen flex justify-center items-center">
         <div className="w-full max-w-md p-10 rounded-lg font-sarabun">
@@ -9,6 +11,7 @@ function Welcome() {
           <img className="mb-8" src = {Logo} alt = "Logo" height = "300" width="400"/>      
         <button
             type="submit"
+            onClick={() => navigate("/login")}
             className="bg-[#489ECF] w-full text-white px-4 py-3 rounded-lg shadow-lg mb-10"
             >
             เข้าสู่ระบบ
