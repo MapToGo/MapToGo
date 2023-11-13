@@ -8,8 +8,10 @@ import {
   Input,
   SkeletonText,
   Text,
+  Select,
 } from '@chakra-ui/react'
 import { FaLocationArrow, FaTimes } from 'react-icons/fa'
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 
 import {
   useJsApiLoader,
@@ -17,12 +19,15 @@ import {
   Marker,
   Autocomplete,
   DirectionsRenderer,
+  LoadScript,
 } from '@react-google-maps/api'
+
 import { useRef, useState } from 'react'
 
-const center = { lat: 48.8584, lng: 2.2945 }
+const center = {lat: 13.76, lng: 100.52}
 
 function Map() {
+  let navigate = useNavigate()
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries: ['places'],
@@ -32,31 +37,58 @@ function Map() {
   const [directionsResponse, setDirectionsResponse] = useState(null)
   const [distance, setDistance] = useState('')
   const [duration, setDuration] = useState('')
-
+  
   /** @type React.MutableRefObject<HTMLInputElement> */
   const originRef = useRef()
   /** @type React.MutableRefObject<HTMLInputElement> */
-  const destiantionRef = useRef()
+  const destiantionRef = useRef() 
 
-  if (!isLoaded) {
+   if (!isLoaded) {
     return <SkeletonText />
   }
+    
+function calculateAndDisplayRoute(directionsService, directionsRenderer){
+  const SelectMode = document.getElementById("mode").value
 
+  directionsService.routes({
+    origin: document.getElementById("from").value,
+    destination: document.getElementById("to").value,
+
+    travelMode: google.maps.TravelMode[SelectMode]
+  })
+  .then((Response) => {
+    directionsRenderer.setDirections(Response);
+  })
+  .catch((e) => window.alert("Direction requst fail"))
+}
   async function calculateRoute() {
     if (originRef.current.value === '' || destiantionRef.current.value === '') {
       return
     }
     // eslint-disable-next-line no-undef
+    const directionsRenderer = new google.maps.DirectionsRenderer()
     const directionsService = new google.maps.DirectionsService()
-    const results = await directionsService.route({
+    const map = new google.maps.map(document.getElementById("map"),{
+      zoom: 14,
+      center: {lat: 13.76, lng: 100.52},
+    });
+
+    directionsRenderer.setMap(map);
+    calculateAndDisplayRoute(directionsService, directionsRenderer);
+    document.getElementById("mode").addEventListener("change", () => {
+      calculateAndDisplayRoute(directionsService, directionsRenderer)
+    });
+    
+  
+    /* const results = await directionsService.route({
       origin: originRef.current.value,
       destination: destiantionRef.current.value,
       // eslint-disable-next-line no-undef
       travelMode: google.maps.TravelMode.DRIVING,
-    })
-    setDirectionsResponse(results)
+    }) */
+    /* setDirectionsResponse(results)
     setDistance(results.routes[0].legs[0].distance.text)
-    setDuration(results.routes[0].legs[0].duration.text)
+    setDuration(results.routes[0].legs[0].duration.text) */
   }
 
   function clearRoute() {
@@ -65,6 +97,7 @@ function Map() {
     setDuration('')
     originRef.current.value = ''
     destiantionRef.current.value = ''
+    
   }
 
   return (
@@ -109,7 +142,7 @@ function Map() {
         <HStack spacing={2} justifyContent='space-between'>
           <Box flexGrow={1}>
             <Autocomplete>
-              <Input type='text' placeholder='Origin' ref={originRef} />
+              <Input type='text' placeholder='Origin' id='from' ref={originRef} />
             </Autocomplete>
           </Box>
           <Box flexGrow={1}>
@@ -117,22 +150,30 @@ function Map() {
               <Input
                 type='text'
                 placeholder='Destination'
+                id='to'
                 ref={destiantionRef}
               />
             </Autocomplete>
           </Box>
 
           <ButtonGroup>
-            <Button colorScheme='pink' type='submit' onClick={calculateRoute}>
+            <Select id='mode' placeholder='TravelMode'>
+              <option value='DRIVING'>Driving</option>
+              <option value='WALKING'>Walking</option>
+              <option value='BICYCLING'>Bicycling</option>
+              <option value='TRANSIT'>Transit</option>
+            </Select>
+            <div id='map'></div>
+            <Button colorScheme='green' type='submit' onClick={calculateAndDisplayRoute}>
               GO
             </Button>
-            <IconButton
-              aria-label='center back'
-              icon={<FaTimes />}
-              onClick={clearRoute}
-            />
+            <Button colorScheme='pink' type='submit' onClick={()=>navigate('/path')}>
+              Favourite
+            </Button>
+           
           </ButtonGroup>
         </HStack>
+        <HStack></HStack>
         <HStack spacing={4} mt={4} justifyContent='space-between'>
           <Text>Distance: {distance} </Text>
           <Text>Duration: {duration} </Text>
