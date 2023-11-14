@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react"
 import { db } from "../firebase";
 import { collection,addDoc,getDoc } from "firebase/firestore";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+
 
 const FormInputData = () =>{
 const [form, setForm]= useState({})
-
+let navigate = useNavigate();
 
 const handleChange =(e)=>{
     console.log("handle change",e.target.name,e.target.value)
@@ -14,7 +16,7 @@ const handleChange =(e)=>{
         [e.target.name]: e.target.value
          })
     console.log("form", form)
-    console.log("form2", form)
+    
 
 }
 
@@ -31,6 +33,7 @@ const handleAddData = async (e) => {
       .then((res)=>{
          console.log(res);
       })
+      navigate('/login');
       
   } catch (err) {
       console.error(err);

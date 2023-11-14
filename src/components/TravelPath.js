@@ -9,6 +9,7 @@ const Travelpath = () => {
 
   const start = (event) => {
     setStart(event.target.value);
+    
   };
 
   const finish = (event) => {
@@ -23,6 +24,7 @@ const Travelpath = () => {
           type="text"
           placeholder="ต้นทาง"
           value={input1}
+          
           onChange={start}
           className="border rounded-xl p-2 drop-shadow-md"
         />

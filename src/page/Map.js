@@ -20,7 +20,9 @@ import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import worldIcon from "../image/world.svg";
 import locationIcon from "../image/location.svg";
 import tripleDot from "../image/tripleDot.svg";
-
+import { db } from "../firebase";
+import { collection,addDoc,getDoc } from "firebase/firestore";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import {
   useJsApiLoader,
   GoogleMap,
@@ -28,7 +30,7 @@ import {
   Autocomplete,
   DirectionsRenderer,
 } from "@react-google-maps/api";
-import { React, useRef, useState } from "react";
+import { React, useRef, useState , useEffect } from "react";
 import { BottomNavigation } from "reactjs-bottom-navigation";
 
 const center = { lat: 48.8584, lng: 2.2945 };
@@ -39,7 +41,7 @@ function Map() {
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries: ["places"],
   });
-
+  
   const [map, setMap] = useState(/** @type google.maps.Map */ (null));
   const [directionsResponse, setDirectionsResponse] = useState(null);
   const [distance, setDistance] = useState("");
@@ -49,6 +51,43 @@ function Map() {
   const originRef = useRef();
   /** @type React.MutableRefObject<HTMLInputElement> */
   const destiantionRef = useRef();
+  const auth = getAuth();
+  const [form, setForm]= useState({email: auth.name,})
+  useEffect(() => {
+    console.log("form updated", form);
+  }, [form]);
+
+
+
+  const handleChange =(e)=>{
+    console.log("handle change",e.target.name,e.target.value)
+    setForm({
+        ...form,
+        [e.target.name]: e.target.value 
+         })
+    console.log("form", form)
+   
+
+}
+
+const handleAddData = async (e) => {
+  e.preventDefault()
+  
+
+  
+  try {
+      console.log("Pass")
+      const auth = getAuth();
+         console.log(form)
+      await addDoc(collection(db,"FavP",),form).then((res)=>{
+        console.log(res);
+     })
+      
+      
+      
+  } catch (err) {
+      console.error(err);
+  }}
 
   if (!isLoaded) {
     return <SkeletonText />;
@@ -123,10 +162,14 @@ function Map() {
               <HStack>
                 <PublicIcon />
                 <Input
+                  
                   type="text"
+                  name="start"
                   placeholder="ต้นทาง"
                   bgColor={"white"}
                   ref={originRef}
+                  onChange={handleChange}
+                  
                 />
               </HStack>
             </Autocomplete>
@@ -141,10 +184,13 @@ function Map() {
               <HStack>
                 <FmdGoodIcon />
                 <Input
+                  
                   type="text"
+                  name="end"
                   placeholder="ปลายทาง"
                   bgColor={"white"}
                   ref={destiantionRef}
+                  onChange={handleChange}
                 />
               </HStack>
             </Autocomplete>
@@ -152,7 +198,9 @@ function Map() {
         </HStack>
         <HStack spacing={2} mt={4} justifyContent="space-between">
           <ButtonGroup width="full">
-            <Button>
+            <Button
+            onClick={handleAddData}
+            >
               <BookmarkBorderIcon />
             </Button>
             <Button
