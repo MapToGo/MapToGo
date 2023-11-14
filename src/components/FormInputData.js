@@ -9,6 +9,13 @@ const FormInputData = () =>{
 const [form, setForm]= useState({})
 let navigate = useNavigate();
 
+useEffect(() => {
+  console.log("form updated", form);
+}, [form]);
+
+
+
+
 const handleChange =(e)=>{
     console.log("handle change",e.target.name,e.target.value)
     setForm({

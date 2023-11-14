@@ -9,6 +9,11 @@ import { FaEye, FaEyeDropper, FaRegEye } from 'react-icons/fa';
 
 const LoginPage = () => {
     
+
+  
+
+
+
     const [form, setForm]= useState({})
     const [passwordVisible, setpasswordvisible]=useState(true)
     let navigate = useNavigate();
@@ -21,6 +26,12 @@ const LoginPage = () => {
             setpasswordvisible(true)
         }
     }
+
+    useEffect(() => {
+      console.log("form updated", form);
+    }, [form]);
+
+
     const handleChange =(e)=>{
         console.log("handle change",e.target.name,e.target.value)
         setForm({
