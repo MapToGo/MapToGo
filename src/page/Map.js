@@ -52,23 +52,37 @@ function Map() {
   /** @type React.MutableRefObject<HTMLInputElement> */
   const destiantionRef = useRef();
   const auth = getAuth();
-  const [form, setForm]= useState({email: auth.name,})
+  const [form, setForm]= useState({email: auth.currentUser.email,})
   useEffect(() => {
     console.log("form updated", form);
   }, [form]);
 
 
 
-  const handleChange =(e)=>{
+  const handletextChange =(e)=>{
     console.log("handle change",e.target.name,e.target.value)
     setForm({
         ...form,
         [e.target.name]: e.target.value 
          })
     console.log("form", form)
-   
+
 
 }
+
+
+const handlePlaceSelected = (place) => {
+  // ทำอย่างไรก็ตามเมื่อผู้ใช้เลือกตัวเลือก
+  console.log('Selected place:', place);
+  setForm({
+    ...form,
+    start: place.description,
+    // และอื่น ๆ ตามที่ต้องการ
+  });
+};
+
+
+
 
 const handleAddData = async (e) => {
   e.preventDefault()
@@ -156,21 +170,29 @@ const handleAddData = async (e) => {
         width="100%"
         height="auto"
       >
-        <HStack spacing={2} justifyContent="space-between">
+        <HStack 
+        
+        spacing={2} justifyContent="space-between">
           <Box flexGrow={1}>
-            <Autocomplete>
+            <Autocomplete
+             
+             
+            
+            >
               <HStack>
                 <PublicIcon />
                 <Input
-                  
+
                   type="text"
                   name="start"
                   placeholder="ต้นทาง"
                   bgColor={"white"}
                   ref={originRef}
-                  onChange={handleChange}
+                  onChange={handletextChange}
                   
                 />
+      
+
               </HStack>
             </Autocomplete>
           </Box>
@@ -190,7 +212,7 @@ const handleAddData = async (e) => {
                   placeholder="ปลายทาง"
                   bgColor={"white"}
                   ref={destiantionRef}
-                  onChange={handleChange}
+                  onChange={handletextChange}
                 />
               </HStack>
             </Autocomplete>
